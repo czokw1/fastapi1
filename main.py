@@ -4,6 +4,7 @@ from fastapi import FastAPI, Body, Query, Header, Depends, Request
 from pydantic import BaseModel, Field
 import pyodbc
 import os
+import uvicorn
 
 SERVER = os.getenv('SERVER')
 DATABASE = os.getenv('DATABASE')
@@ -209,6 +210,5 @@ async def testtable_delete(id: int = None):
     t = TestTableModel()
     return t.delete(id)
 
-
-
-    
+if __name__ == '__main__':
+    uvicorn.run(app, port=8000)
